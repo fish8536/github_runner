@@ -65,3 +65,7 @@ runs-on: [self-hosted, laptop]
 - `down` 會立刻取消執行中的 job（GitHub 上顯示 cancelled），容器在幾秒內結束。
 - privileged 等於 Docker VM 的 root；只用在 private repo。public repo 的 fork PR 可以在這台跑任意程式碼，
   而且 public repo 用 GitHub-hosted 本來就免費。
+
+## License
+
+[MIT](LICENSE)
