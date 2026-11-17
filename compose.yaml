@@ -1,0 +1,22 @@
+services:
+  runner:
+    build: .
+    image: local/gh-runner:2.338.2
+    # Each replica runs its own dockerd (Docker-in-Docker): jobs never see the host's
+    # containers, and `services:` ports publish into this container's own network
+    # namespace, so steps reach them via localhost and replicas never collide on ports.
+    privileged: true
+    volumes:
+      - runner-cache:/cache
+    environment:
+      REPO_URL: ${REPO_URL:-}
+      REG_TOKEN: ${REG_TOKEN:-}
+      RUNNER_LABELS: ${RUNNER_LABELS:-}
+      RUNNER_NAME_PREFIX: ${RUNNER_NAME_PREFIX:-laptop}
+    # No restart policy: the registration token expires after 1h, so a restarted container
+    # could not re-register. `./runner.sh up` fetches a fresh one.
+    restart: "no"
+    stop_grace_period: 30s
+
+volumes:
+  runner-cache:
