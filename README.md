@@ -1,5 +1,7 @@
 # github_runner
 
+繁體中文 | [English](README.en.md)
+
 在自己的電腦上用 Docker 起停 GitHub Actions self-hosted runner，用來替 private repo 省下 GitHub-hosted 的分鐘數。
 
 - **手動起停**：`./runner.sh up` 才接 job，`./runner.sh down` 就停。不常駐、不開機自啟。
